@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class MainClass {
 
@@ -181,30 +182,28 @@ public class MainClass {
 
         }
 
-        File file2 = new File("login.txt");
-        if (!file2.exists()) {
-            throw new FileNotFoundException("file is not exist");
-        }
-        Scanner inputlogin = new Scanner(file2);
-        //read the data from input file and store it
-        while (inputlogin.hasNext()) {
-            user.add(new User(inputlogin.next(), inputlogin.next(), inputlogin.nextInt()));
+        try {
+            File file2 = new File("login.txt");
+            Scanner inputlogin = new Scanner(file2);
+            //read the data from input file and store it
+            while (inputlogin.hasNext()) {
+                user.add(new User(inputlogin.next(), inputlogin.next(), inputlogin.nextInt()));
 
-        }
-        //Read the data from lawyers appointment file and store it
-        File file3 = new File("LawyersAppointments.txt");
+            }
 
-        if (!file3.exists()) {
-            throw new FileNotFoundException("file is not exist");
+            //Read the data from lawyers appointment file and store it
+            File file3 = new File("LawyersAppointments.txt");
+            Scanner input3 = new Scanner(file3);
+            while (input3.hasNext()) {
+                String Lname = input3.nextLine();
+                String time = input3.nextLine();
+                String Day = input3.nextLine();
+                String Date = input3.nextLine();
+                Lschedule.add(new Consultation(Lname, time, Day, Date, list));
+            }
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        Scanner input3 = new Scanner(file3);
-        while (input3.hasNext()) {
-            String Lname = input3.nextLine();
-            String time = input3.nextLine();
-            String Day = input3.nextLine();
-            String Date = input3.nextLine();
-            Lschedule.add(new Consultation(Lname, time, Day, Date, list));
 
-        }
     }
 }
