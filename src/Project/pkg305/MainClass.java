@@ -145,18 +145,18 @@ public class MainClass {
         }*/
     }
 
-    //this method will display the menu for the user and run choosen function
-    public static int Menu() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("--------------------------------------------------");
-        System.out.println("    1.  Make Consultation\n    2.  Search for Lawye"
-                + "\n    3.  Rating Consultation Session\n    4.  Manage Lawyer Profile");
-        System.out.println("--------------------------------------------------");
-        System.out.print("Enter your choice (1 - 4) or any other number to back to login bage: ");
-        int choice = sc.nextInt();
-        return choice;
-       
-    }
+//    //this method will display the menu for the user and run choosen function
+//    public static int Menu() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("--------------------------------------------------");
+//        System.out.println("    1.  Make Consultation\n    2.  Search for Lawye"
+//                + "\n    3.  Rating Consultation Session\n    4.  Manage Lawyer Profile");
+//        System.out.println("--------------------------------------------------");
+//        System.out.print("Enter your choice (1 - 4) or any other number to back to login bage: ");
+//        int choice = sc.nextInt();
+//        return choice;
+//       
+//    }
 
     //this method will read all the files
     public static void Readfile() throws FileNotFoundException {

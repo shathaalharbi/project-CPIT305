@@ -93,45 +93,45 @@ public class Lawyer extends User {
         }
         return null;
     }
-    //Method to call lawyer profile and edit it
-    public static void ManageProfile(String id) {
-        Scanner input = new Scanner(System.in);
-        //Print statements
-        System.out.println("--------------------------------------------------");
-        System.out.println("\t\tLawyer Profile");
-        System.out.println("1- Edit Degree"
-                + "\n2- Edit Phone Number"
-                + "\n3- Edit Email ");
-        System.out.println("--------------------------------------------------");
-        System.out.print("Chose your selection (Notice: To return to the main menu, enter any other key): ");
-        String select = input.nextLine();
-        
-        Lawyer result = getLawyer(id, MainClass.list);//Returned Lawyer
-        switch (select) {
-            case "1":
-                //Case to change degree
-                System.out.print("Enter your new Degree: ");
-                String Degree = input.nextLine();
-                result.setDegree(Degree);
-                break;
-
-            case "2":
-                //Case to change phone
-                System.out.print("Enter your new Phone Number: ");
-                String Phone = input.nextLine();
-                result.setPhone(Phone);
-                break;
-
-            case "3":
-                //Case to change email
-                System.out.print("Enter your new Email: ");
-                String Email = input.nextLine();
-                result.setUserEmail(Email);
-                break;
-        }
-        System.out.println("--------------------------------------------------");
-        System.out.println(result.toString());//show profile after change
-    }
+//    //Method to call lawyer profile and edit it
+//    public static void ManageProfile(String id) {
+//        Scanner input = new Scanner(System.in);
+//        //Print statements
+//        System.out.println("--------------------------------------------------");
+//        System.out.println("\t\tLawyer Profile");
+//        System.out.println("1- Edit Degree"
+//                + "\n2- Edit Phone Number"
+//                + "\n3- Edit Email ");
+//        System.out.println("--------------------------------------------------");
+//        System.out.print("Chose your selection (Notice: To return to the main menu, enter any other key): ");
+//        String select = input.nextLine();
+//        
+//        Lawyer result = getLawyer(id, MainClass.list);//Returned Lawyer
+//        switch (select) {
+//            case "1":
+//                //Case to change degree
+//                System.out.print("Enter your new Degree: ");
+//                String Degree = input.nextLine();
+//                result.setDegree(Degree);
+//                break;
+//
+//            case "2":
+//                //Case to change phone
+//                System.out.print("Enter your new Phone Number: ");
+//                String Phone = input.nextLine();
+//                result.setPhone(Phone);
+//                break;
+//
+//            case "3":
+//                //Case to change email
+//                System.out.print("Enter your new Email: ");
+//                String Email = input.nextLine();
+//                result.setUserEmail(Email);
+//                break;
+//        }
+//        System.out.println("--------------------------------------------------");
+//        System.out.println(result.toString());//show profile after change
+//    }
 
     @Override
     public String toString() {

@@ -157,11 +157,10 @@ public class RateInterface extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int numconslt = Integer.parseInt(jTextField1.getText());
+        int numconslt = Integer.parseInt(jTextField1.getText()) ;
         double rate = Integer.parseInt(jTextField2.getText());
-        if (numconslt - 1 >= MainClass.userlog.Customer_Consultation.size()) {
-            JOptionPane.showMessageDialog(null, "Ther is no Consultations with this number! \n Try again ", "Error", 0);
-        } else {
+
+        try {
             //send the rate to method RatingCON to do the mathematical necessary operations
             rate = Rating.RatingCON(MainClass.userlog.Customer_Consultation.get(numconslt - 1), rate);
             //update the rate of the lawyer
@@ -174,6 +173,8 @@ public class RateInterface extends javax.swing.JFrame {
             homePageInterface.pack();
             homePageInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.dispose();
+        } catch (IndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Ther is no Consultations with this number! \n Try again ", "Error", 0);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

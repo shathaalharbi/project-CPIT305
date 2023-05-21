@@ -121,6 +121,11 @@ public class MakeConsultaionInterface3 extends javax.swing.JFrame {
         // TODO add your handling code here:
         String s= Consultation.newBookConsultation(jTextField1.getText(), MainClass.userlog, MainClass.Lschedule.get(MakeConsultaionInterface.laywerNum ));
         JOptionPane.showMessageDialog(null, s);
+        HomePageInterface homePageInterface = new HomePageInterface();
+        homePageInterface.setVisible(true);
+        homePageInterface.pack();
+        homePageInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

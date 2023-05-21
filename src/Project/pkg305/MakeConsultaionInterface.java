@@ -143,10 +143,9 @@ public class MakeConsultaionInterface extends javax.swing.JFrame {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-        // TODO add your handling code here:
-        laywerNum= Integer.parseInt(jTextField1.getText())-1;
-        //check if user choice in the laywer list
-        if (laywerNum< MainClass.Lschedule.size()) {
+                laywerNum= Integer.parseInt(jTextField1.getText())-1;
+
+        try {
             //check if ther is available appointment
             if (MainClass.Lschedule.get(laywerNum).getAvailable().equals("available")) {
                 MakeConsultaionInterface2 consult = new MakeConsultaionInterface2();
@@ -160,7 +159,7 @@ public class MakeConsultaionInterface extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Sorry we don't have an available appointment \nWe will inform you if there is any avalible time in the lawyer schedule\n      Thank You", " Error", 0);
 
             }
-        } else {
+        } catch(IndexOutOfBoundsException e)  {
             JOptionPane.showMessageDialog(null, "there is no laywer with this number", " Error", 0);
         }
     }//GEN-LAST:event_jTextField1ActionPerformed

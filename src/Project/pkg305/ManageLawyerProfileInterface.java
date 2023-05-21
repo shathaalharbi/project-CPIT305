@@ -192,13 +192,14 @@ public class ManageLawyerProfileInterface extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
           String Phone = jTextField2.getText();
-        lawyer.setPhone(Phone);
-        if(Phone != null){
+        
+        if(Phone.equals(" ")){
+           lawyer.setPhone(Phone); 
             JOptionPane.showMessageDialog(null, " Your Phone modified successfully");
         }
         else{
              
-            JOptionPane.showMessageDialog(null, " Field is Empty");
+            JOptionPane.showMessageDialog(null, " Field is Empty", " Error", 0);
         }
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -210,13 +211,13 @@ public class ManageLawyerProfileInterface extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String Degree = jTextField1.getText();
-        lawyer.setDegree(Degree);
-      if(Degree != null){
+      if(Degree.equals(" ")){
+            lawyer.setDegree(Degree);
             JOptionPane.showMessageDialog(null, " Your Degree modified successfully");
         }
         else{
              
-            JOptionPane.showMessageDialog(null, " Field is Empty");
+            JOptionPane.showMessageDialog(null, " Field is Empty", " Error", 0);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -232,13 +233,13 @@ public class ManageLawyerProfileInterface extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         String Email = jTextField2.getText();
-        lawyer.setUserEmail(Email);
-        if(Email != null){
+        if(Email.equals(" ")){
+            lawyer.setUserEmail(Email);
             JOptionPane.showMessageDialog(null, " Your Email modified successfully");
         }
         else{
              
-            JOptionPane.showMessageDialog(null, " Field is Empty");
+            JOptionPane.showMessageDialog(null, " Field is Empty", " Error", 0);
         }
 
         
