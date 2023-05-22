@@ -1,8 +1,8 @@
 package Project.pkg305;
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.net.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -18,13 +18,37 @@ public class MainClass {
     //user object
     public static User userlog;
      
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
  
-        Readfile(); //read from file
+          Readfile(); //read from file
         LoginInterface login = new LoginInterface();
         login.setVisible(true);
         login.pack();
         login.setLocationRelativeTo(null);
+//        
+//        
+////        
+//        try (ServerSocket s = new ServerSocket(8800)) {
+//                    System.out.println("in main server");
+//
+//            System.out.println("Server waiting Connection...");
+//            int i = 1;
+//            System.out.println(user.size());
+//            while (true) {
+//                Socket incom = s.accept();
+//                System.out.println("Client Number: " + i);
+//                System.out.println("Client connect via: " + incom.getInetAddress());
+////                Runnable r = new ThreadedHandler(incom);
+////                Thread t = new Thread(r);
+////                t.start();
+//                i++;
+//
+//
+//            }
+//
+//        }
+
+
         /*Scanner input = new Scanner(System.in);
         Scanner input2 = new Scanner(System.in);
         
@@ -159,12 +183,9 @@ public class MainClass {
 //    }
 
     //this method will read all the files
-    public static void Readfile() throws FileNotFoundException {
+    public static void Readfile() {
         File file1 = new File("LawyersInfo.txt");
-
-        if (!file1.exists()) {
-            throw new FileNotFoundException("file is not exist");
-        }
+                try {
         Scanner input = new Scanner(file1);
 
         //read the data from input file and store it
@@ -182,7 +203,7 @@ public class MainClass {
 
         }
 
-        try {
+
             File file2 = new File("login.txt");
             Scanner inputlogin = new Scanner(file2);
             //read the data from input file and store it

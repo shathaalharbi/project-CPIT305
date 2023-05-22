@@ -43,7 +43,7 @@ public class Rating {
             s = s + ("   " + (i + 1) + "-   Consultation Date: "
                     + con.getDate() + " " + con.getDay() + " " + con.getTime()
                     + "\n   Case Tyep: " + con.getConsultationLawyer().getCacesType()
-                    + "\n   Lawyer name: " + con.getConsultationLawyer().getName() + "\n");
+                    + "\n   Lawyer name: " + con.getConsultationLawyer().getNames() + "\n");
         }
         return s;
     }

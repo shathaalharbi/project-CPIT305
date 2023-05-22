@@ -9,7 +9,7 @@ public class Customers extends User{
     public static Lawyer searchForLawyer(String name, ArrayList<Lawyer> list ) {
         
         for(int i=0;i<list.size();i++){
-            if(name.equalsIgnoreCase(list.get(i).getName()))
+            if(name.equalsIgnoreCase(list.get(i).getNames()))
                 return list.get(i);
         }
         return null;

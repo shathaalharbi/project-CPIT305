@@ -147,7 +147,7 @@ public class Consultation {
 
     public static String newDisplayschedule(int n) {
         String s = "";
-        s = s + ("       - this is  he available appointment for the lawyer: " + MainClass.Lschedule.get(n).getConsultationLawyer().getName()
+        s = s + ("       - this is  he available appointment for the lawyer: " + MainClass.Lschedule.get(n).getConsultationLawyer().getNames()
                 + MainClass.Lschedule.get(n).toString());
 
         return s;
