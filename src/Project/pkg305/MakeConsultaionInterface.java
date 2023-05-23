@@ -4,6 +4,9 @@
  */
 package Project.pkg305;
 
+import static Project.pkg305.DBConnection.CreatConnection;
+import static Project.pkg305.DBConnection.lawyer;
+import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -13,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class MakeConsultaionInterface extends javax.swing.JFrame {
 
-    public static int laywerNum ;
+    public static int laywerNum = 0;
 
     /**
      * Creates new form MakeConsultaionInterface
@@ -25,10 +28,7 @@ public class MakeConsultaionInterface extends javax.swing.JFrame {
     public void showMessage() {
 
         //print all lawyers profile
-        String s = "";
-        for (int i = 0; i < MainClass.list.size(); i++) {
-            s = s + "\n--- " + (i + 1) + "---\n" + MainClass.list.get(i).toString() + "\n-----------------------------------";
-        }
+        String s = Lawyer.printLawyers();
         jTextArea1.append(s);
     }
 
@@ -134,25 +134,68 @@ public class MakeConsultaionInterface extends javax.swing.JFrame {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-                laywerNum= Integer.parseInt(jTextField1.getText())-1;
 
+        laywerNum = Integer.parseInt(jTextField1.getText()) - 1;
         try {
             //check if ther is available appointment
-            if (MainClass.Lschedule.get(laywerNum).getAvailable().equals("available")) {
-                MakeConsultaionInterface2 consult = new MakeConsultaionInterface2();
-                consult.showMessage();
-                consult.setVisible(true);
-                consult.pack();
-                consult.setLocationRelativeTo(null);
-                this.dispose();
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Sorry we don't have an available appointment \nWe will inform you if there is any avalible time in the lawyer schedule\n      Thank You", " Error", 0);
-
+            Lawyer lawyer = DBConnection.lawyer.get(laywerNum);
+            for (int i = 0; i < DBConnection.Consultation.size(); i++) {
+                
+                if (lawyer.getUserID() == DBConnection.Consultation.get(i).getlawyerId()) {
+                    if (DBConnection.Consultation.get(i).getAvailable().equals("available")) {
+                        MakeConsultaionInterface2 consult = new MakeConsultaionInterface2();
+                        consult.showMessage(i);
+                        consult.setVisible(true);
+                        consult.pack();
+                        consult.setLocationRelativeTo(null);
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Sorry we don't have an available appointment \nWe will inform you if there is any avalible time in the lawyer schedule\n      Thank You", " Error", 0);
+                    }
+                }
             }
-        } catch(IndexOutOfBoundsException e)  {
+
+        } catch (IndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "there is no laywer with this number", " Error", 0);
         }
+        // }
+//            if (DBConnection.Consultation.get(laywerNum)) {
+//                MakeConsultaionInterface2 consult = new MakeConsultaionInterface2();
+//                // consult.showMessage();
+//                consult.setVisible(true);
+//                consult.pack();
+//                consult.setLocationRelativeTo(null);
+//                this.dispose();
+
+//                try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
+//            String selectSQL = "SELECT * FROM Lawyer";
+//            ResultSet resultSet = st.executeQuery(selectSQL);
+//            resultSet.absolute(laywerNum);
+//            laywerNum = resultSet.getInt("Id");
+//            if (laywerNum != 0) {
+//                PreparedStatement prepSQL = con.prepareStatement("SELECT * FROM Consultation WHERE Lawyer_id=?");
+//                prepSQL.setInt(1, laywerNum);
+//                resultSet = prepSQL.executeQuery();
+//
+//                if (resultSet.next()) {
+//                    MakeConsultaionInterface2 consult = new MakeConsultaionInterface2();
+//                    consult.showMessage(resultSet);
+//                    consult.setVisible(true);
+//                    consult.pack();
+//                    consult.setLocationRelativeTo(null);
+//                    this.dispose();
+//
+//                }else {
+//                                    JOptionPane.showMessageDialog(null, "Sorry we don't have an available appointment \nWe will inform you if there is any avalible time in the lawyer schedule\n      Thank You", " Error", 0);
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(null, "there is no laywer with this number", " Error", 0);
+//
+//            }
+//
+//        } catch (Exception sqlEx) {
+//            System.out.println(sqlEx);
+//        }
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -167,7 +210,6 @@ public class MakeConsultaionInterface extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

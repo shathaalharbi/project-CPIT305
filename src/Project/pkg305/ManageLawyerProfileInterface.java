@@ -19,7 +19,8 @@ public class ManageLawyerProfileInterface extends javax.swing.JFrame {
      * Creates new form ManageInterface
      */
     public ManageLawyerProfileInterface() {
-        lawyer = Lawyer.getLawyer(String.valueOf(MainClass.userlog.getUserID()), MainClass.list);//Returned Lawyer
+        
+        lawyer = Customers.searchForLawyer(HomePageInterface.userlog.getUserID());//Returned Lawyer
         initComponents();
     }
 

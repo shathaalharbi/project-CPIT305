@@ -16,6 +16,7 @@ public class HomePageInterface extends javax.swing.JFrame {
     /**
      * Creates new form HomePageInterface
      */
+    public static User userlog;
     public HomePageInterface() {
         initComponents();
     }
@@ -140,7 +141,7 @@ public class HomePageInterface extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (MainClass.userlog.getUserID() < 20) {
+        if (HomePageInterface.userlog.getUserID() < 20) {
             JOptionPane.showMessageDialog(null, "You can't do this because you're a lawyer!!", " Error", 0);
 
         } else {
@@ -166,12 +167,12 @@ public class HomePageInterface extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         //  User user1 = LoginGUI.user1;
-        if (MainClass.userlog.getUserID() < 20) {
+        if (userlog.getUserID() < 20) {
             JOptionPane.showMessageDialog(null, "You can't do this because you're a lawyer! ", " Error", 0);
 
         } else {
 
-            if (MainClass.userlog.Customer_Consultation.isEmpty()) {
+            if (userlog.Customer_Consultation.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "You do not have any Consultation!", " Error", 0);
 
             } else {
@@ -188,7 +189,7 @@ public class HomePageInterface extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         //check user if it ia a lawyer or not using id
-        if (MainClass.userlog.getUserID() < 20) {
+        if (HomePageInterface.userlog.getUserID() < 20) {
             ManageLawyerProfileInterface mange = new ManageLawyerProfileInterface();
             mange.setVisible(true);
             mange.pack();

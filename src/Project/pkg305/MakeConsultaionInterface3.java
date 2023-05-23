@@ -111,7 +111,7 @@ public class MakeConsultaionInterface3 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String s= Consultation.newBookConsultation(jTextField1.getText(), MainClass.userlog, MainClass.Lschedule.get(MakeConsultaionInterface.laywerNum ));
+        String s= Consultation.newBookConsultation(jTextField1.getText(), HomePageInterface.userlog, DBConnection.Consultation.get(MakeConsultaionInterface.laywerNum ));
         JOptionPane.showMessageDialog(null, s);
         HomePageInterface homePageInterface = new HomePageInterface();
         homePageInterface.setVisible(true);

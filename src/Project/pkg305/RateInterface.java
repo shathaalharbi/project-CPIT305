@@ -21,7 +21,7 @@ public class RateInterface extends javax.swing.JFrame {
     }
 
     public void showMessage() {
-        String s = Rating.NewprintEnded(MainClass.userlog.Customer_Consultation);
+        String s = Rating.NewprintEnded(HomePageInterface.userlog.Customer_Consultation);
         jTextArea1.append(s);
     }
 
@@ -147,24 +147,27 @@ public class RateInterface extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int numconslt = Integer.parseInt(jTextField1.getText()) ;
-        double rate = Integer.parseInt(jTextField2.getText());
+        if ((!jTextField1.getText().equals("")) && (!jTextField2.getText().equals(""))) {
+            int numconslt = Integer.parseInt(jTextField1.getText());
+            double rate = Integer.parseInt(jTextField2.getText());
+            try {
+                //send the rate to method RatingCON to do the mathematical necessary operations
+                rate = Rating.RatingCON(HomePageInterface.userlog.Customer_Consultation.get(numconslt - 1), rate);
+                //update the rate of the lawyer
+                HomePageInterface.userlog.Customer_Consultation.get(numconslt - 1).getConsultationLawyer().setLawyerRate(rate);
 
-        try {
-            //send the rate to method RatingCON to do the mathematical necessary operations
-            rate = Rating.RatingCON(MainClass.userlog.Customer_Consultation.get(numconslt - 1), rate);
-            //update the rate of the lawyer
-            MainClass.userlog.Customer_Consultation.get(numconslt - 1).getConsultationLawyer().setLawyerRate(rate);
+                JOptionPane.showMessageDialog(null, " Thank you :>");
 
-            JOptionPane.showMessageDialog(null, " Thank you :>");
-
-            HomePageInterface homePageInterface = new HomePageInterface();
-            homePageInterface.setVisible(true);
-            homePageInterface.pack();
-            homePageInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.dispose();
-        } catch (IndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(null, "Ther is no Consultations with this number! \n Try again ", "Error", 0);
+                HomePageInterface homePageInterface = new HomePageInterface();
+                homePageInterface.setVisible(true);
+                homePageInterface.pack();
+                homePageInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                this.dispose();
+            } catch (IndexOutOfBoundsException e) {
+                JOptionPane.showMessageDialog(null, "Ther is no Consultations with this number! \n Try again ", "Error", 0);
+            }
+        }else{
+           JOptionPane.showMessageDialog(null, "Ther is an issue! \n Try again ", "Error", 0); 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

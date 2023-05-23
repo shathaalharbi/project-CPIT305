@@ -11,6 +11,8 @@ public class Consultation {
     String ConDate = null;
     String Descrption = null;
     User custom;
+    int cistomId;
+    int lawyerId;
     Lawyer ConsultationLawyer;
     String time;
     String Lname;
@@ -18,12 +20,22 @@ public class Consultation {
     String date;
     String available;
 
+    public Consultation(int conId, int lawyer_Id, String Date, String Day, String Time) {
+        this.ConID = conId;
+        this.lawyerId = lawyer_Id;
+        this.date = Date;
+        this.day = Day;
+        this.time = Time;
+        this.available = "available";
+        this.ConsultationLawyer = Customers.searchForLawyer(lawyer_Id);
+    }
+
     Consultation(String Lname, String time, String Day, String Date, ArrayList<Lawyer> list) {
         this.Lname = Lname;
         this.date = Date;
         this.day = Day;
         this.time = time;
-        this.ConsultationLawyer = Customers.searchForLawyer(Lname, list);
+        //  this.ConsultationLawyer = Customers.searchForLawyer(Lname, list);
         this.available = "available";
     }
 
@@ -76,6 +88,22 @@ public class Consultation {
 
     public void setConID(int i) {
         this.ConID = i;
+    }
+
+    public int getlawyerId() {
+        return lawyerId;
+    }
+
+    public void setlawyerId(int i) {
+        this.lawyerId = i;
+    }
+
+    public int getcistomId() {
+        return cistomId;
+    }
+
+    public void setcistomId(int i) {
+        this.cistomId = i;
     }
 
     public String getConDate() {
@@ -142,13 +170,12 @@ public class Consultation {
 //        }
 //
 //    }
-    
     // This method will display the available appointment
-
     public static String newDisplayschedule(int n) {
+
         String s = "";
-        s = s + ("       - this is  he available appointment for the lawyer: " + MainClass.Lschedule.get(n).getConsultationLawyer().getNames()
-                + MainClass.Lschedule.get(n).toString());
+        s = s + ("       - this is the available appointment for the lawyer:\n " + DBConnection.Consultation.get(n).getConsultationLawyer().getNames()
+                + DBConnection.Consultation.get(n).toString());
 
         return s;
 
@@ -160,13 +187,13 @@ public class Consultation {
         con.setAvailable("not availbale");
         con.setDescrption(desc);
         con.setCustomer(us);
+        con.setcistomId(us.UserID);
         //update the number of consultations of the lawyer
         con.getConsultationLawyer().setNumOfConsultations(con.getConsultationLawyer().getNumOfConsultations() + 1);
 
         //add the consultion to customer profile
         con.getCustomer().AddConsultation(con);
-        //increment the number of Consultation of the lawyer
-        con.getConsultationLawyer().setNumOfConsultations(con.getConsultationLawyer().getNumOfConsultations() + 1);
+       
         return ("Your Consltation has been booked successfully");
 
     }
@@ -197,7 +224,6 @@ public class Consultation {
 //        }
 //
 //    }
-
     @Override
     public String toString() {
 

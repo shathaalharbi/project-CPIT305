@@ -4,6 +4,11 @@
  */
 package Project.pkg305;
 
+import static Project.pkg305.DBConnection.CreatConnection;
+import static Project.pkg305.MakeConsultaionInterface.laywerNum;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -24,11 +29,24 @@ public class MakeConsultaionInterface2 extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void showMessage() {
+    public void showMessage(int i) {
         // jButton1.setVisible(false);
-        String s = Consultation.newDisplayschedule(MakeConsultaionInterface.laywerNum);
+
+        String s = Consultation.newDisplayschedule(i);
         jTextArea1.append(s);
     }
+//        try {
+//            resultSet.first();
+//            while (resultSet.next()){
+//              s=s+"     Date        Time        Day       \n"
+//                + "     Date: " + resultSet.getString("Date") + "     \nTime: " + resultSet.getString("Time") + "     \nDay: " + resultSet.getString("Day") ;  
+//            }
+//        
+//        jTextArea1.append(s);
+//        
+//        } catch (Exception sqlEx) {
+//            System.out.println(sqlEx);
+//        }
 
     /**
      * This method is called from within the constructor to initialize the form.

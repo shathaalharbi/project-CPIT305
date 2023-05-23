@@ -1,5 +1,6 @@
 package Project.pkg305;
 
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ public class Lawyer extends User {
     double LawyerRate;
 
     public Lawyer(String name, String phone, String email, String degree, String specialty, String CasesType, double price, int numOfConsultations, int id) {
-        super(phone, email);
+        // super(phone, email);
         this.Name = name;
         this.Degree = degree;
         this.Specialty = specialty;
@@ -22,7 +23,18 @@ public class Lawyer extends User {
         this.price = price;
         this.numOfConsultations = numOfConsultations;
         this.UserID = id;
-        this.LawyerRate=5.0;
+        this.LawyerRate = 5.0;
+    }
+
+    public Lawyer(String name, String phone, String email, String degree, String specialty, String CasesType, double price, int numOfConsultations, int id, double LawyerRate) {
+        super(phone, email, id);
+        this.Name = name;
+        this.Degree = degree;
+        this.Specialty = specialty;
+        this.CasesType = CasesType;
+        this.price = price;
+        this.numOfConsultations = numOfConsultations;
+        this.LawyerRate = LawyerRate;
     }
 
     public String getNames() {
@@ -82,7 +94,7 @@ public class Lawyer extends User {
     public void setLawyerRate(double LawyerRate) {
         this.LawyerRate = LawyerRate;
     }
-    
+
     //Method to getLawyer by the id
     public static Lawyer getLawyer(String id, ArrayList<Lawyer> list) {
         for (int i = 0; i < list.size(); i++) {
@@ -93,6 +105,7 @@ public class Lawyer extends User {
         }
         return null;
     }
+
     //Method to call lawyer profile and edit it
     public static void ManageProfile(String id) {
         Scanner input = new Scanner(System.in);
@@ -105,7 +118,7 @@ public class Lawyer extends User {
         System.out.println("--------------------------------------------------");
         System.out.print("Chose your selection (Notice: To return to the main menu, enter any other key): ");
         String select = input.nextLine();
-        
+
         Lawyer result = getLawyer(id, MainClass.list);//Returned Lawyer
         switch (select) {
             case "1":
@@ -135,10 +148,26 @@ public class Lawyer extends User {
 
     @Override
     public String toString() {
-        return "The Lawyer name is: " + this.Name + "\n" + "Phone Number: " + this.Phone + "\n" + "Email: " + this.UserEmail + "\n"
-                + "The Degree is: " + this.Degree + "\n" + "The Specialty is: " + this.Specialty + "\n" + "The Case Type is : "
-                + this.CasesType + "\n" + "The Consultations price is: " + this.price + "\n" + "The number Of Consultations is: "
-                + this.numOfConsultations;
+
+        return "The Lawyer name is: " + getNames() + "\n" + "Email: " + getUserEmail() + "\n"
+                + "The Degree is: " + getDegree() + "\n" + "The Specialty is: " + getSpecialty() + "\n" + "The Case Type is : "
+                + getCacesType() + "\n" + "The Consultations price is: " + getPrice() + "\n" + "The number Of Consultations is: "
+                + getNumOfConsultations() + "\nThe Lawyer rate is: " + getLawyerRate();
     }
-     
+
+    public static String printLawyers() {
+        String s = "";
+        for (int i = 0; i < DBConnection.lawyer.size(); i++) {
+            Lawyer L = DBConnection.lawyer.get(i);
+            s = s + "\t--- " + (i + 1) + "---\n"
+                    + "The Lawyer name is: " + L.getNames() + "\n" + "Email: " + L.getUserEmail() + "\n"
+                    + "The Degree is: " + L.getDegree() + "\n" + "The Specialty is: " + L.getSpecialty() + "\n" + "The Case Type is : "
+                    + L.getCacesType() + "\n" + "The Consultations price is: " + L.getPrice() + "\n" + "The number Of Consultations is: "
+                    + L.getNumOfConsultations() + "\nThe Lawyer rate is: " + L.getLawyerRate()
+                    + "\n-----------------------------------\n";
+        }
+
+        return s;
+    }
+
 }

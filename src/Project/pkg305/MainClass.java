@@ -3,6 +3,7 @@ package Project.pkg305;
 
 import java.io.*;
 import java.net.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -16,15 +17,29 @@ public class MainClass {
     //decler array list from Consultation class type to save the Consultations
     static ArrayList<Consultation> Lschedule = new ArrayList<>();
     //user object
-    public static User userlog;
+    //public static User userlog;
      
-    public static void main(String[] args) throws IOException {
- 
-          Readfile(); //read from file
+    public static void main(String[] args) throws IOException, SQLException {
+        
+        
+        //DBConnection.CreatConnection();
+        // DBConnection.CreatTables();
+        // DBConnection.inserting();
+        
+        
+         DBConnection.GetCustomers();
+         DBConnection.GetLawyers();
+         DBConnection.GetConsultations();
+         
         LoginInterface login = new LoginInterface();
         login.setVisible(true);
         login.pack();
         login.setLocationRelativeTo(null);
+         
+         
+         
+       // Readfile(); //read from file
+ 
 //        
 //        
 ////        
@@ -220,7 +235,7 @@ public class MainClass {
                 String time = input3.nextLine();
                 String Day = input3.nextLine();
                 String Date = input3.nextLine();
-                Lschedule.add(new Consultation(Lname, time, Day, Date, list));
+               // Lschedule.add(new Consultation(Lname, time, Day, Date, list));
             }
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null, e);

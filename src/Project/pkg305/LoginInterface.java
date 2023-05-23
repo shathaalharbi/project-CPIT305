@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author nessm
  */
 public class LoginInterface extends javax.swing.JFrame {
-   
+
     /**
      * Creates new form LoginInterface
      */
@@ -129,6 +129,27 @@ public class LoginInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        String username = jTextField1.getText();
+        String password = jPasswordField1.getText();
+
+        HomePageInterface.userlog = User.Login(username, password);
+        if (HomePageInterface.userlog != null) {
+            HomePageInterface homepage = new HomePageInterface();
+            homepage.setVisible(true);
+            homepage.pack();
+            homepage.show();
+            this.dispose();
+        } else {
+            //user = null that's means user did not successfully login         
+            JOptionPane.showMessageDialog(null, "The user password or Username is incorrect \n Please try Again ", " Error", 0);
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -136,33 +157,6 @@ public class LoginInterface extends javax.swing.JFrame {
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-//         try {
-//        // TODO add your handling code here:
-//        MainClass.Readfile();
-//    } catch (FileNotFoundException ex) {
-//        Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);
-//    }
-        String username = jTextField1.getText();
-        String password = jPasswordField1.getText();
-        
-         MainClass.userlog =User.Login(username, password);
-        if ( MainClass.userlog  != null) {
-            HomePageInterface homepage = new HomePageInterface();
-            homepage.setVisible(true);
-            homepage.pack();
-            homepage.show();
-            this.dispose();
-                    
-            } 
-            else {//user = null that's means user did not successfully login         
-        JOptionPane.showMessageDialog(null, "The user password or Username is incorrect \n Please try Again ", " Error", 0);
-
-        }
-
-    }//GEN-LAST:event_jButton1ActionPerformed
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -196,8 +190,6 @@ public class LoginInterface extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -124,19 +124,20 @@ public class SearchInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
         jTextArea1.setText("");
         String name = txt.getText();
-        Lawyer result = Customers.searchForLawyer(name, MainClass.list);
-        try {
-            jTextArea1.setText(result.toString());
-        }catch(NullPointerException e){
-             JOptionPane.showMessageDialog(null, "There is no Lawyer with this name!");
-
+        Lawyer L = Customers.searchForLawyer(name);
+        if (L == null) {
+            //if the laweyer not found
+            JOptionPane.showMessageDialog(null, "There is no Lawyer with this name!");
+        } else {
+            jTextArea1.setText(L.toString());
         }
-//        if (result == null) {
-//            //if the laweyer not found
-//            JOptionPane.showMessageDialog(null, "There is no Lawyer with this name!");
+        
+        //        if (s != null) {
+//            jTextArea1.setText(s);
 //        } else {
-//            jTextArea1.setText(result.toString());
-//        } 
+//            JOptionPane.showMessageDialog(null, "There is no Lawyer with this name!");
+//
+     //   }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -151,7 +152,6 @@ public class SearchInterface extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
