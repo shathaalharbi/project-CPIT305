@@ -3,10 +3,23 @@
 
 Consultation details: 
      Date        Time        Day       
+     10:00am     16/07     Monday        
+--Lawyer name: Ahmed Alghamdi
+--Lawyer email: AhmedAlghamdi@gmail.com
+Descrption jjgjgjg
+--Customer: Name: Sara Alharbi , Email: SaraAlharbi@gmail.com
+
+---------------------------
+
+
+---------------------------
+
+Consultation details: 
+     Date        Time        Day       
      1:15pm     20/07     Thursday        
 --Lawyer name: Khaled Alshehri
 --Lawyer email: KhaledAlshehri@gmail.com
-Descrption bjhjhjgg
+Descrption fhfhfh
 --Customer: Name: Leen Alzahrani , Email: LeenAlzahrani@gmail.com
 
 ---------------------------

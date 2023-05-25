@@ -153,7 +153,9 @@ public class MakeConsultaionInterface2 extends javax.swing.JFrame {
          DBConnection.GetLawyers();
          DBConnection.GetConsultations();
         if (i.getAvailable().equals("Available")) {
-             Consultation.BookConsultation( HomePageInterface.userlog, DBConnection.Consultation.get(MakeConsultaionInterface.laywerNum ));
+            Thread t1= new Thread(new MyThread( HomePageInterface.userlog,DBConnection.Consultation.get(MakeConsultaionInterface.laywerNum ))); 
+             t1.start();
+            //Consultation.BookConsultation( HomePageInterface.userlog, DBConnection.Consultation.get(MakeConsultaionInterface.laywerNum ));
             // JOptionPane.showMessageDialog(null, "");
             MakeConsultaionInterface3 makeConsultaionInterface3 = new MakeConsultaionInterface3(DBConnection.Consultation.get(MakeConsultaionInterface.laywerNum ));
             makeConsultaionInterface3.setVisible(true);
