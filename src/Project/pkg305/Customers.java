@@ -1,6 +1,5 @@
 package Project.pkg305;
 
-
 import java.util.ArrayList;
 
 public class Customers extends User {
@@ -23,8 +22,19 @@ public class Customers extends User {
         }
         return null;
     }
-    
-        public static Lawyer searchForLawyer(int n) {
+
+    public static Customers searchForCustomer(int n) {
+        System.out.println(DBConnection.Customer.size());
+        for (int i = 0; i < DBConnection.Customer.size(); i++) {
+            if (DBConnection.Customer.get(i).getUserID() == n) {
+                System.out.println("what the ");
+                return DBConnection.Customer.get(i);
+            }
+        }
+        return null;
+    }
+
+    public static Lawyer searchForLawyer(int n) {
         for (int i = 0; i < DBConnection.lawyer.size(); i++) {
 
             if (DBConnection.lawyer.get(i).getUserID() == n) {
@@ -33,7 +43,14 @@ public class Customers extends User {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+
+        return "Name: " + Name + " , Email: " + super.getUserEmail();
+    }
 }
+
 //        
 //        try (Connection con = CreatConnection(); PreparedStatement statement = con.prepareStatement("SELECT * FROM Lawyer WHERE Name=?");) {
 //            statement.setString(1, name);
@@ -51,9 +68,6 @@ public class Customers extends User {
 //        } catch (Exception sqlEx) {
 //            System.out.println(sqlEx);
 //        }
-
-
-
 //public static String searchForLawyer(String name, ArrayList<Lawyer> list) {
 ////        for(int i=0;i<list.size();i++){
 ////            if(name.equalsIgnoreCase(list.get(i).getNames()))

@@ -142,9 +142,9 @@ public class MakeConsultaionInterface extends javax.swing.JFrame {
             for (int i = 0; i < DBConnection.Consultation.size(); i++) {
                 
                 if (lawyer.getUserID() == DBConnection.Consultation.get(i).getlawyerId()) {
-                    if (DBConnection.Consultation.get(i).getAvailable().equals("available")) {
+                    if (DBConnection.Consultation.get(i).getAvailable().equals("Available")) {
                         MakeConsultaionInterface2 consult = new MakeConsultaionInterface2();
-                        consult.showMessage(i);
+                        consult.showMessage(DBConnection.Consultation.get(i));
                         consult.setVisible(true);
                         consult.pack();
                         consult.setLocationRelativeTo(null);

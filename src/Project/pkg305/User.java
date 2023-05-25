@@ -119,13 +119,14 @@ public class User {
                 for (int i = 0; i < DBConnection.lawyer.size(); i++) {
                     if (id == (DBConnection.lawyer.get(i).getUserID())) // return list.get(i);
                     {
-                        try {
-                            // (1) Create Socket obj   
-                            Socket s = new Socket("localhost", 8800);
-                            return DBConnection.lawyer.get(i);
-                        } catch (IOException ex) {
-                            System.out.println("issue in login interface connection");
-                        }
+                        return DBConnection.lawyer.get(i);
+//                        try {
+//                            // (1) Create Socket obj   
+//                            Socket s = new Socket("localhost", 8800);
+//                            return DBConnection.lawyer.get(i);
+//                        } catch (IOException ex) {
+//                            System.out.println("issue in login interface connection");
+//                        }
                     }
                 }
             } else {
@@ -133,14 +134,16 @@ public class User {
                 for (int i = 0; i < DBConnection.Customer.size(); i++) {
                     if (id == (DBConnection.Customer.get(i).getUserID())) // return list.get(i);
                     {
-                        // (1) Create Socket obj   
-                                                try {
+                        // (1) Create Socket obj  
+                        
+                        return DBConnection.Customer.get(i);
+//                                                try {
                             // (1) Create Socket obj   
-                            Socket s = new Socket("localhost", 8800);
-                           return DBConnection.Customer.get(i);
-                        } catch (IOException ex) {
-                            System.out.println("issue in login interface connection");
-                        }
+//                            Socket s = new Socket("localhost", 8800);
+//                           return DBConnection.Customer.get(i);
+//                        } catch (IOException ex) {
+//                            System.out.println("issue in login interface connection");
+//                        }
                         
                     }
                 }

@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class MakeConsultaionInterface2 extends javax.swing.JFrame {
 
+    Consultation i;
+
     /**
      * Creates new form MakeConsultaionInterface2
      */
@@ -25,14 +27,17 @@ public class MakeConsultaionInterface2 extends javax.swing.JFrame {
         initComponents();
     }
 
-    public MakeConsultaionInterface2(int n) {
-        initComponents();
-    }
-
     public void showMessage(int i) {
         // jButton1.setVisible(false);
 
         String s = Consultation.newDisplayschedule(i);
+        jTextArea1.append(s);
+    }
+
+    public void showMessage(Consultation c) {
+        // jButton1.setVisible(false);
+        this.i = c;
+        String s = c.toString();
         jTextArea1.append(s);
     }
 //        try {
@@ -144,11 +149,18 @@ public class MakeConsultaionInterface2 extends javax.swing.JFrame {
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
-        MakeConsultaionInterface3 makeConsultaionInterface3 = new MakeConsultaionInterface3();
-        makeConsultaionInterface3.setVisible(true);
-        makeConsultaionInterface3.pack();
-        makeConsultaionInterface3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+         DBConnection.GetCustomers();
+         DBConnection.GetLawyers();
+         DBConnection.GetConsultations();
+        if (i.getAvailable().equals("Available")) {
+             Consultation.BookConsultation( HomePageInterface.userlog, DBConnection.Consultation.get(MakeConsultaionInterface.laywerNum ));
+            // JOptionPane.showMessageDialog(null, "");
+            MakeConsultaionInterface3 makeConsultaionInterface3 = new MakeConsultaionInterface3(DBConnection.Consultation.get(MakeConsultaionInterface.laywerNum ));
+            makeConsultaionInterface3.setVisible(true);
+            makeConsultaionInterface3.pack();
+            makeConsultaionInterface3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
+        }
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed

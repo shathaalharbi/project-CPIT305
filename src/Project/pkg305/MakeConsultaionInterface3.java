@@ -16,7 +16,9 @@ public class MakeConsultaionInterface3 extends javax.swing.JFrame {
     /**
      * Creates new form MakeConsultaionInterface3
      */
-    public MakeConsultaionInterface3() {
+    Consultation c;
+    public MakeConsultaionInterface3(Consultation c) {
+         this.c=c;
         initComponents();
     }
 
@@ -111,8 +113,10 @@ public class MakeConsultaionInterface3 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String s= Consultation.newBookConsultation(jTextField1.getText(), HomePageInterface.userlog, DBConnection.Consultation.get(MakeConsultaionInterface.laywerNum ));
-        JOptionPane.showMessageDialog(null, s);
+      //  String s= Consultation.newBookConsultation(jTextField1.getText(), HomePageInterface.userlog, DBConnection.Consultation.get(MakeConsultaionInterface.laywerNum ));
+        c.setDescrption(jTextField1.getText());
+        c.saveBookConsultation();
+        JOptionPane.showMessageDialog(null, "Your Consltation has been booked successfully");
         HomePageInterface homePageInterface = new HomePageInterface();
         homePageInterface.setVisible(true);
         homePageInterface.pack();

@@ -141,14 +141,18 @@ public class LoginInterface extends javax.swing.JFrame {
 
         HomePageInterface.userlog = User.Login(username, password);
         if (HomePageInterface.userlog != null) {
-                
+            try {
+                // (1) Create Socket obj   
+                Socket s = new Socket("localhost", 8800);
 
                 HomePageInterface homepage = new HomePageInterface();
                 homepage.setVisible(true);
                 homepage.pack();
                 homepage.show();
                 this.dispose();
-            
+            } catch (IOException ex) {
+                System.out.println("issue in login interface connection");
+            }
 
         } else {
             //user = null that's means user did not successfully login         

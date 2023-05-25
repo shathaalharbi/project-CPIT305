@@ -20,22 +20,24 @@ public class MainClass {
     //public static User userlog;
      
     public static void main(String[] args) throws IOException, SQLException {
-        
+         
+        PrintWriter p=new PrintWriter("Descrption.txt");
+        p.close();
         
         //DBConnection.CreatConnection();
         // DBConnection.CreatTables();
-        // DBConnection.inserting();
+         DBConnection.inserting();
         
-//        
-         DBConnection.GetCustomers();
-         DBConnection.GetLawyers();
-         DBConnection.GetConsultations();
+////        
+//         DBConnection.GetCustomers();
+//         DBConnection.GetLawyers();
+//         DBConnection.GetConsultations();
          
 //        LoginInterface login = new LoginInterface();
 //        login.setVisible(true);
 //        login.pack();
 //        login.setLocationRelativeTo(null);
-         
+//         
          
          
        // Readfile(); //read from file
@@ -44,9 +46,7 @@ public class MainClass {
 //        
 ////        
         try (ServerSocket s = new ServerSocket(8800)) {
-                    System.out.println("in main server");
-
-            System.out.println("Server waiting Connection...");
+            System.out.println("Application Running...");
             int i = 1;
             while (true) {
                 Socket incom = s.accept();

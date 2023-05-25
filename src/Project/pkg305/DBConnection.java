@@ -7,7 +7,7 @@ public class DBConnection {
 
     public static ArrayList<Lawyer> lawyer = new ArrayList<>();
     public static ArrayList<Customers> Customer = new ArrayList<>();
-   // public static ArrayList<User> User1 = new ArrayList<>();
+    // public static ArrayList<User> User1 = new ArrayList<>();
     public static ArrayList<Consultation> Consultation = new ArrayList<>();
 
     //Method to create connectin and the database
@@ -86,7 +86,7 @@ public class DBConnection {
                     + "  Date VARCHAR(250),"
                     + "  Day VARCHAR(250),"
                     + "  Time VARCHAR(250),"
-                    + "  Available BOOLEAN DEFAULT TRUE,"
+                    + "  Available VARCHAR(250) ,"
                     + "  PRIMARY KEY (Id));";
 
             st.executeUpdate(createTableSQL1);
@@ -97,8 +97,30 @@ public class DBConnection {
 
     }
 
+    public static void DeletTables() {
+        String createTableSQL1 = "";
+        try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
+
+            createTableSQL1 = "DROP TABLE Lawyer;";
+            st.executeUpdate(createTableSQL1);
+
+            createTableSQL1 = "DROP TABLE Customer;";
+            st.executeUpdate(createTableSQL1);
+
+            createTableSQL1 = "DROP TABLE Users;";
+            st.executeUpdate(createTableSQL1);
+
+            createTableSQL1 = "DROP TABLE Consultation;";
+            st.executeUpdate(createTableSQL1);
+        } catch (Exception sqlEx) {
+            System.out.println(sqlEx);
+        }
+    }
+
     public static void inserting() {
         String createTableSQL1 = "";
+        DeletTables();
+        CreatTables();
         try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
 
             //Insert into Lawyer table
@@ -133,11 +155,11 @@ public class DBConnection {
 
             //Insert into Consultation table
             createTableSQL1 = "INSERT INTO Consultation "
-                    + "(Id , Lawyer_id , Date , Day , Time )VALUES "
-                    + "(100,1,'10:00am','Monday','16/07'),"
-                    + "(101,2,'1:15pm','Thursday','20/07'),"
-                    + "(103,3,'9:00pm','Sunday','24/07'),"
-                    + "(104,4,'9:30am','Wednesday','28/07');";
+                    + "(Id , Lawyer_id , Date , Day , Time, Available )VALUES "
+                    + "(100,1,'10:00am','Monday','16/07','Available'),"
+                    + "(101,2,'1:15pm','Thursday','20/07','Available'),"
+                    + "(103,3,'9:00pm','Sunday','24/07','Available'),"
+                    + "(104,4,'9:30am','Wednesday','28/07','Available');";
 
             st.executeUpdate(createTableSQL1);
 
@@ -165,67 +187,95 @@ public class DBConnection {
     }
 
     public static void GetLawyers() {
-        
-            try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
-                System.out.println(lawyer.size());
-                String selectSQL = "SELECT * FROM Lawyer";
-                ResultSet resultSet = st.executeQuery(selectSQL);
-                while (resultSet.next()) {
-                    lawyer.add(new Lawyer(resultSet.getString("Name"),
-                            resultSet.getString("Phone"), resultSet.getString("Email"),
-                            resultSet.getString("Degree"), resultSet.getString("Specialty"),
-                            resultSet.getString("Cases_type"), resultSet.getDouble("Price"),
-                            resultSet.getInt("Num_of_consultations"), resultSet.getInt("Id"),
-                            resultSet.getDouble("Lawyer_rate")));
 
-                }
+        try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
+            String selectSQL = "SELECT * FROM Lawyer";
+            ResultSet resultSet = st.executeQuery(selectSQL);
+            while (resultSet.next()) {
+                lawyer.add(new Lawyer(resultSet.getString("Name"),
+                        resultSet.getString("Phone"), resultSet.getString("Email"),
+                        resultSet.getString("Degree"), resultSet.getString("Specialty"),
+                        resultSet.getString("Cases_type"), resultSet.getDouble("Price"),
+                        resultSet.getInt("Num_of_consultations"), resultSet.getInt("Id"),
+                        resultSet.getDouble("Lawyer_rate")));
 
-            } catch (Exception sqlEx) {
-                System.out.println(sqlEx);
             }
-        
+
+        } catch (Exception sqlEx) {
+            System.out.println(sqlEx);
+        }
 
     }
 
     public static void GetCustomers() {
-        
-            try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
-                                System.out.println(Customer.size());
-                String selectSQL = "SELECT * FROM Customer";
-                ResultSet resultSet = st.executeQuery(selectSQL);
-                while (resultSet.next()) {
-                    Customer.add(new Customers(resultSet.getString("Name"),
-                            resultSet.getString("Phone"), resultSet.getString("Email"), resultSet.getInt("Id")));
-                }
 
-            } catch (Exception sqlEx) {
-                System.out.println(sqlEx);
+        try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
+            String selectSQL = "SELECT * FROM Customer";
+            ResultSet resultSet = st.executeQuery(selectSQL);
+            while (resultSet.next()) {
+                Customer.add(new Customers(resultSet.getString("Name"),
+                        resultSet.getString("Phone"), resultSet.getString("Email"), resultSet.getInt("Id")));
             }
-        
+
+        } catch (Exception sqlEx) {
+            System.out.println(sqlEx);
+        }
 
     }
 
     public static void GetConsultations() {
-      
-            try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
-                System.out.println(Consultation.size());
-                String selectSQL = "SELECT * FROM Consultation";
-                ResultSet resultSet = st.executeQuery(selectSQL);
-                while (resultSet.next()) {
-                    
-                    Consultation.add(new Consultation(resultSet.getInt("Id"), resultSet.getInt("Lawyer_id"), resultSet.getString("Date"), resultSet.getString("Day"), resultSet.getString("Time")));
-                }
-                                System.out.println("after "+Consultation.size());
 
+        try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
+            String selectSQL = "SELECT * FROM Consultation";
+            ResultSet resultSet = st.executeQuery(selectSQL);
+            while (resultSet.next()) {
 
-            } catch (Exception sqlEx) {
-                System.out.println(sqlEx);
+                Consultation.add(new Consultation(resultSet.getInt("Id"),
+                        resultSet.getInt("Lawyer_id"), resultSet.getString("Date"), resultSet.getString("Day"), resultSet.getString("Time"),
+                        resultSet.getString("Available")));
             }
 
+        } catch (Exception sqlEx) {
+            System.out.println(sqlEx);
+        }
 
     }
-}
 
+    public static void updateConsultation(int id) {
+        try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
+            PreparedStatement statement = con.prepareStatement(
+                    "UPDATE Consultation SET Available = 'Not Available' WHERE Id = ?");
+            statement.setInt(1, id);
+            // Execute the update query
+            int rowsUpdated = statement.executeUpdate();
+
+            // Print the number of rows updated
+            System.out.println(rowsUpdated + " rows updated.");
+        } catch (Exception sqlEx) {
+            System.out.println(sqlEx);
+        }
+
+    }
+
+    public static String SearchCustomer(int id) {
+        try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
+            PreparedStatement statement = con.prepareStatement(
+                    "SELECT * FROM Customer WHERE Id = ?");
+            statement.setInt(1, id);
+            // Execute the update query
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return "Name: " + resultSet.getString("Name") + " , Email: " + resultSet.getString("Email");
+            } else {
+                return "No customer found with ID " + id;
+            }
+            //return "Name: " + resultSet.getString("Name") + " , Email: " + resultSet.getString("Email");
+        } catch (Exception sqlEx) {
+            System.out.println(sqlEx);
+        }
+        return "";
+    }
+}
 //    public static ResultSet searchCustomer(int id) {
 //        try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
 //            PreparedStatement statement = con.prepareStatement("SELECT * FROM Customer WHERE Id=?");
