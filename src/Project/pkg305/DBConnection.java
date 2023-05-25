@@ -5,10 +5,9 @@ import java.util.ArrayList;
 
 public class DBConnection {
 
-
     public static ArrayList<Lawyer> lawyer = new ArrayList<>();
     public static ArrayList<Customers> Customer = new ArrayList<>();
-    public static ArrayList<User> User1 = new ArrayList<>();
+   // public static ArrayList<User> User1 = new ArrayList<>();
     public static ArrayList<Consultation> Consultation = new ArrayList<>();
 
     //Method to create connectin and the database
@@ -166,51 +165,63 @@ public class DBConnection {
     }
 
     public static void GetLawyers() {
-        try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
-            String selectSQL = "SELECT * FROM Lawyer";
-            ResultSet resultSet = st.executeQuery(selectSQL);
-            while (resultSet.next()) {
-                lawyer.add(new Lawyer( resultSet.getString("Name"),
-                        resultSet.getString("Phone"), resultSet.getString("Email"),
-                        resultSet.getString("Degree"), resultSet.getString("Specialty"),
-                        resultSet.getString("Cases_type"), resultSet.getDouble("Price"),
-                        resultSet.getInt("Num_of_consultations"), resultSet.getInt("Id"),
-                        resultSet.getDouble("Lawyer_rate")));
+        
+            try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
+                System.out.println(lawyer.size());
+                String selectSQL = "SELECT * FROM Lawyer";
+                ResultSet resultSet = st.executeQuery(selectSQL);
+                while (resultSet.next()) {
+                    lawyer.add(new Lawyer(resultSet.getString("Name"),
+                            resultSet.getString("Phone"), resultSet.getString("Email"),
+                            resultSet.getString("Degree"), resultSet.getString("Specialty"),
+                            resultSet.getString("Cases_type"), resultSet.getDouble("Price"),
+                            resultSet.getInt("Num_of_consultations"), resultSet.getInt("Id"),
+                            resultSet.getDouble("Lawyer_rate")));
 
+                }
+
+            } catch (Exception sqlEx) {
+                System.out.println(sqlEx);
             }
-
-        } catch (Exception sqlEx) {
-            System.out.println(sqlEx);
-        }
+        
 
     }
 
     public static void GetCustomers() {
-        try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
-            String selectSQL = "SELECT * FROM Customer";
-            ResultSet resultSet = st.executeQuery(selectSQL);
-            while (resultSet.next()) {
-                Customer.add(new Customers( resultSet.getString("Name"),
-                        resultSet.getString("Phone"), resultSet.getString("Email"), resultSet.getInt("Id")));
-            }
+        
+            try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
+                                System.out.println(Customer.size());
+                String selectSQL = "SELECT * FROM Customer";
+                ResultSet resultSet = st.executeQuery(selectSQL);
+                while (resultSet.next()) {
+                    Customer.add(new Customers(resultSet.getString("Name"),
+                            resultSet.getString("Phone"), resultSet.getString("Email"), resultSet.getInt("Id")));
+                }
 
-        } catch (Exception sqlEx) {
-            System.out.println(sqlEx);
-        }
+            } catch (Exception sqlEx) {
+                System.out.println(sqlEx);
+            }
+        
 
     }
 
     public static void GetConsultations() {
-        try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
-            String selectSQL = "SELECT * FROM Consultation";
-            ResultSet resultSet = st.executeQuery(selectSQL);
-            while (resultSet.next()) {
-                Consultation.add(new Consultation(resultSet.getInt("Id"), resultSet.getInt("Lawyer_id"), resultSet.getString("Date"), resultSet.getString("Day"), resultSet.getString("Time")));
+      
+            try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
+                System.out.println(Consultation.size());
+                String selectSQL = "SELECT * FROM Consultation";
+                ResultSet resultSet = st.executeQuery(selectSQL);
+                while (resultSet.next()) {
+                    
+                    Consultation.add(new Consultation(resultSet.getInt("Id"), resultSet.getInt("Lawyer_id"), resultSet.getString("Date"), resultSet.getString("Day"), resultSet.getString("Time")));
+                }
+                                System.out.println("after "+Consultation.size());
+
+
+            } catch (Exception sqlEx) {
+                System.out.println(sqlEx);
             }
 
-        } catch (Exception sqlEx) {
-            System.out.println(sqlEx);
-        }
 
     }
 }

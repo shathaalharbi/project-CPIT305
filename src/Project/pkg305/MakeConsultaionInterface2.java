@@ -78,6 +78,7 @@ public class MakeConsultaionInterface2 extends javax.swing.JFrame {
 
         jRadioButton1.setBackground(new java.awt.Color(204, 204, 204));
         jRadioButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setText("Yes   ");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,6 +88,7 @@ public class MakeConsultaionInterface2 extends javax.swing.JFrame {
 
         jRadioButton2.setBackground(new java.awt.Color(204, 204, 204));
         jRadioButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setText("No   ");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

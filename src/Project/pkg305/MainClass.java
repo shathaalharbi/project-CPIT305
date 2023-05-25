@@ -26,15 +26,15 @@ public class MainClass {
         // DBConnection.CreatTables();
         // DBConnection.inserting();
         
-        
+//        
          DBConnection.GetCustomers();
          DBConnection.GetLawyers();
          DBConnection.GetConsultations();
          
-        LoginInterface login = new LoginInterface();
-        login.setVisible(true);
-        login.pack();
-        login.setLocationRelativeTo(null);
+//        LoginInterface login = new LoginInterface();
+//        login.setVisible(true);
+//        login.pack();
+//        login.setLocationRelativeTo(null);
          
          
          
@@ -43,25 +43,21 @@ public class MainClass {
 //        
 //        
 ////        
-//        try (ServerSocket s = new ServerSocket(8800)) {
-//                    System.out.println("in main server");
-//
-//            System.out.println("Server waiting Connection...");
-//            int i = 1;
-//            System.out.println(user.size());
-//            while (true) {
-//                Socket incom = s.accept();
-//                System.out.println("Client Number: " + i);
-//                System.out.println("Client connect via: " + incom.getInetAddress());
-////                Runnable r = new ThreadedHandler(incom);
-////                Thread t = new Thread(r);
-////                t.start();
-//                i++;
-//
-//
-//            }
-//
-//        }
+        try (ServerSocket s = new ServerSocket(8800)) {
+                    System.out.println("in main server");
+
+            System.out.println("Server waiting Connection...");
+            int i = 1;
+            while (true) {
+                Socket incom = s.accept();
+                System.out.println("Client Number: " + i);
+                System.out.println("Client connect via: " + incom.getInetAddress());
+                i++;
+
+
+            }
+
+        }
 
 
         /*Scanner input = new Scanner(System.in);
