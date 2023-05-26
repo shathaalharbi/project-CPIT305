@@ -12,7 +12,7 @@ public class Customers extends User {
 
     }
 
-    //Method that takes the name enterd by user and th array list to serach by lawyer name 
+    //Method that takes the name enterd by user to serach by lawyer name 
     public static Lawyer searchForLawyer(String name) {
         for (int i = 0; i < DBConnection.lawyer.size(); i++) {
 
@@ -22,18 +22,8 @@ public class Customers extends User {
         }
         return null;
     }
-
-    public static Customers searchForCustomer(int n) {
-        System.out.println(DBConnection.Customer.size());
-        for (int i = 0; i < DBConnection.Customer.size(); i++) {
-            if (DBConnection.Customer.get(i).getUserID() == n) {
-                System.out.println("what the ");
-                return DBConnection.Customer.get(i);
-            }
-        }
-        return null;
-    }
-
+    
+    //Method that takes the id of the lawyer to serach for lawyer  
     public static Lawyer searchForLawyer(int n) {
         for (int i = 0; i < DBConnection.lawyer.size(); i++) {
 
@@ -47,9 +37,20 @@ public class Customers extends User {
     @Override
     public String toString() {
 
-        return "Name: " + Name + " , Email: " + super.getUserEmail();
+        return "     Name: " + Name + " , Email: " + super.getUserEmail();
     }
 }
+
+ /*   public static Customers searchForCustomer(int n) {
+        System.out.println(DBConnection.Customer.size());
+        for (int i = 0; i < DBConnection.Customer.size(); i++) {
+            if (DBConnection.Customer.get(i).getUserID() == n) {
+                System.out.println("what the ");
+                return DBConnection.Customer.get(i);
+            }
+        }
+        return null;
+    }*/
 
 //        
 //        try (Connection con = CreatConnection(); PreparedStatement statement = con.prepareStatement("SELECT * FROM Lawyer WHERE Name=?");) {

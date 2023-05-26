@@ -5,9 +5,12 @@ import java.util.ArrayList;
 
 public class DBConnection {
 
+    //decler array list from lawyer class type to save the lawyer
     public static ArrayList<Lawyer> lawyer = new ArrayList<>();
+    //decler array list from Customer class type to save the Customer
     public static ArrayList<Customers> Customer = new ArrayList<>();
     // public static ArrayList<User> User1 = new ArrayList<>();
+    //decler array list from Consultation class type to save the Consultation
     public static ArrayList<Consultation> Consultation = new ArrayList<>();
 
     //Method to create connectin and the database
@@ -17,6 +20,7 @@ public class DBConnection {
 
             // set the path for the database
             String ConnectionURL = "jdbc:mysql://localhost:3306/LwyerAdviceApp";
+            //String ConnectionURL = "jdbc:mysql://localhost:3306";
 
             // create connection
             con = DriverManager.getConnection(ConnectionURL, "root", "1234");
@@ -97,6 +101,7 @@ public class DBConnection {
 
     }
 
+    //This methos will delet the table to reinsert it again when the mainCalss run again
     public static void DeletTables() {
         String createTableSQL1 = "";
         try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
@@ -112,15 +117,19 @@ public class DBConnection {
 
             createTableSQL1 = "DROP TABLE Consultation;";
             st.executeUpdate(createTableSQL1);
+
         } catch (Exception sqlEx) {
             System.out.println(sqlEx);
         }
     }
 
+    //This mwthod will (1) drop the tables (2) Create the tables (3) insert the rows
     public static void inserting() {
         String createTableSQL1 = "";
+
         DeletTables();
         CreatTables();
+
         try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
 
             //Insert into Lawyer table
@@ -168,6 +177,7 @@ public class DBConnection {
         }
     }
 
+    //This method will search for the user in user tables using his UserName & Password
     public static int searchUser(String UserName, String Password) {
         try (Connection con = CreatConnection(); PreparedStatement statement = con.prepareStatement("SELECT * FROM lwyeradviceapp.users WHERE UserName=? AND Password=?");) {
 
@@ -186,6 +196,7 @@ public class DBConnection {
         return -1;
     }
 
+     //This method will copy the lawyer table into Arraylist
     public static void GetLawyers() {
 
         try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
@@ -207,6 +218,7 @@ public class DBConnection {
 
     }
 
+    //This method will copy the Customer table into Arraylist
     public static void GetCustomers() {
 
         try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
@@ -223,6 +235,7 @@ public class DBConnection {
 
     }
 
+    //This method will copy the Consultation table into Arraylist
     public static void GetConsultations() {
 
         try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
@@ -241,6 +254,7 @@ public class DBConnection {
 
     }
 
+    //This method will update the Consultation stat 
     public static void updateConsultation(int id) {
         try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
             PreparedStatement statement = con.prepareStatement(
@@ -256,7 +270,7 @@ public class DBConnection {
         }
 
     }
-
+   //This method will search for the Customer in Customer tables using his Id
     public static String SearchCustomer(int id) {
         try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
             PreparedStatement statement = con.prepareStatement(
@@ -276,6 +290,33 @@ public class DBConnection {
         return "";
     }
 }
+//    public static void main(String[] args) throws IOException, SQLException {
+//        PrintWriter p = new PrintWriter("Descrption.txt");
+//        p.close();
+//
+//        //DBConnection.CreatConnection();
+//        // DBConnection.CreatTables();
+//        DBConnection.inserting();
+//
+//////        
+////         DBConnection.GetCustomers();
+////         DBConnection.GetLawyers();
+////         DBConnection.GetConsultations();
+//        try (ServerSocket s = new ServerSocket(8800)) {
+//            System.out.println("Application Running...");
+//            int i = 1;
+//            while (true) {
+//                Socket incom = s.accept();
+//                System.out.println("Client Number: " + i);
+//                System.out.println("Client connect via: " + incom.getInetAddress());
+//                i++;
+//
+//            }
+//
+//        }
+//    }
+//}
+//////////////////////////////////////////////////////
 //    public static ResultSet searchCustomer(int id) {
 //        try (Connection con = CreatConnection(); Statement st = con.createStatement();) {
 //            PreparedStatement statement = con.prepareStatement("SELECT * FROM Customer WHERE Id=?");

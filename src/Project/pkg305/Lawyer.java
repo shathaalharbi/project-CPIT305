@@ -96,18 +96,18 @@ public class Lawyer extends User {
     }
 
     //Method to getLawyer by the id
-    public static Lawyer getLawyer(String id, ArrayList<Lawyer> list) {
-        for (int i = 0; i < list.size(); i++) {
-            if (id.equals(Integer.toString(list.get(i).getUserID())))//if condition to return lawyer by id 
-            {
-                return list.get(i);
-            }
-        }
-        return null;
-    }
+//    public static Lawyer getLawyer(String id, ArrayList<Lawyer> list) {
+//        for (int i = 0; i < list.size(); i++) {
+//            if (id.equals(Integer.toString(list.get(i).getUserID())))//if condition to return lawyer by id 
+//            {
+//                return list.get(i);
+//            }
+//        }
+//        return null;
+//    }
 
     //Method to call lawyer profile and edit it
-    public static void ManageProfile(String id) {
+   /* public static void ManageProfile(String id) {
         Scanner input = new Scanner(System.in);
         //Print statements
         System.out.println("--------------------------------------------------");
@@ -144,7 +144,7 @@ public class Lawyer extends User {
         }
         System.out.println("--------------------------------------------------");
         System.out.println(result.toString());//show profile after change
-    }
+    }*/
 
     @Override
     public String toString() {

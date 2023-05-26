@@ -27,12 +27,13 @@ public class MakeConsultaionInterface2 extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void showMessage(int i) {
-        // jButton1.setVisible(false);
-
-        String s = Consultation.newDisplayschedule(i);
-        jTextArea1.append(s);
-    }
+//    public void showMessage(int i) {
+//        // jButton1.setVisible(false);
+//        
+//        //print all Consultation details
+//        String s = Consultation.Displayschedule(i);
+//        jTextArea1.append(s);
+//    }
 
     public void showMessage(Consultation c) {
         // jButton1.setVisible(false);
@@ -149,9 +150,12 @@ public class MakeConsultaionInterface2 extends javax.swing.JFrame {
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
+        
+        //Reinserting the data from the database in case of anny changes
          DBConnection.GetCustomers();
          DBConnection.GetLawyers();
          DBConnection.GetConsultations();
+         
         if (i.getAvailable().equals("Available")) {
             Thread t1= new Thread(new MyThread( HomePageInterface.userlog,DBConnection.Consultation.get(MakeConsultaionInterface.laywerNum ))); 
              t1.start();

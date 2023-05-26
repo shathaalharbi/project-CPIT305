@@ -21,6 +21,7 @@ public class RateInterface extends javax.swing.JFrame {
     }
 
     public void showMessage() {
+        //print all Customer Consultations
         String s = Rating.NewprintEnded(HomePageInterface.userlog.Customer_Consultation);
         jTextArea1.append(s);
     }
@@ -165,9 +166,11 @@ public class RateInterface extends javax.swing.JFrame {
                 this.dispose();
             } catch (IndexOutOfBoundsException e) {
                 JOptionPane.showMessageDialog(null, "Ther is no Consultations with this number! \n Try again ", "Error", 0);
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(null, "You need to enter the a number not litter \n Try again ", "Error", 0);
             }
         }else{
-           JOptionPane.showMessageDialog(null, "Ther is an issue! \n Try again ", "Error", 0); 
+           JOptionPane.showMessageDialog(null, "You leavit one of the field empty try again! \n Try again ", "Error", 0); 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

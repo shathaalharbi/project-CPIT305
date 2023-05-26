@@ -1,16 +1,9 @@
 package Project.pkg305;
 
-import static Project.pkg305.DBConnection.CreatConnection;
-import java.io.*;
-import java.net.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class User {
 
@@ -111,7 +104,7 @@ public class User {
 
     public static User Login(String username, String password) {
         User user = null;
-        ResultSet resultSet = null;
+      //  ResultSet resultSet = null;
 
         int id = DBConnection.searchUser(username, password);
         if (id != -1) {
@@ -137,13 +130,6 @@ public class User {
                         // (1) Create Socket obj  
                         
                         return DBConnection.Customer.get(i);
-//                                                try {
-                            // (1) Create Socket obj   
-//                            Socket s = new Socket("localhost", 8800);
-//                           return DBConnection.Customer.get(i);
-//                        } catch (IOException ex) {
-//                            System.out.println("issue in login interface connection");
-//                        }
                         
                     }
                 }
@@ -153,6 +139,14 @@ public class User {
         return null;
     }
 }
+//                                                try {
+                            // (1) Create Socket obj   
+//                            Socket s = new Socket("localhost", 8800);
+//                           return DBConnection.Customer.get(i);
+//                        } catch (IOException ex) {
+//                            System.out.println("issue in login interface connection");
+//                        }
+                        
 
 //                
 //                try (Connection con = CreatConnection(); Statement st = con.createStatement();) {

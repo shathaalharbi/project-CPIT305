@@ -141,6 +141,7 @@ public class HomePageInterface extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
         if (HomePageInterface.userlog.getUserID() < 20) {
             JOptionPane.showMessageDialog(null, "You can't do this because you're a lawyer!!", " Error", 0);
 
@@ -167,6 +168,7 @@ public class HomePageInterface extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         //  User user1 = LoginGUI.user1;
+        
         if (userlog.getUserID() < 20) {
             JOptionPane.showMessageDialog(null, "You can't do this because you're a lawyer! ", " Error", 0);
 

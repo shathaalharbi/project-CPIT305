@@ -40,10 +40,10 @@ public class Rating {
         String s = "";
         for (int i = 0; i < consultation.size(); i++) {
             Consultation con = consultation.get(i);
-            s = s + ("   " + (i + 1) + "-   Consultation Date: "
+            s = s + ("   (" + (i + 1) + ")-   Consultation Data   - "
                     + con.getDate() + " " + con.getDay() + " " + con.getTime()
                     + "\n   Case Tyep: " + con.getConsultationLawyer().getCacesType()
-                    + "\n   Lawyer name: " + con.getConsultationLawyer().getNames() + "\n");
+                    + "\n   Lawyer name: " + con.getConsultationLawyer().getNames() + "\n---------------");
         }
         return s;
     }

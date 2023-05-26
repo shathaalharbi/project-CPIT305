@@ -154,6 +154,66 @@ public class Consultation {
 
     }
 
+    // This method will display the available appointment
+    public static String Displayschedule(int n) {
+
+        String s = "";
+        s = s + ("       - this is the available appointment for the lawyer:\n " + DBConnection.Consultation.get(n).getConsultationLawyer().getNames()
+                + DBConnection.Consultation.get(n).toString());
+
+        return s;
+
+    }
+    //This method will book appointment for the customer
+    public static void BookConsultation(User us, Consultation con) throws NoSuchElementException {
+        ConsultationLock.lock();
+        //System.out.println("Consultation Lock:" + ConsultationLock.isLocked());
+        try {
+            //make the appointment by chinging the stat of to not availbale, sending the description, and set the user
+            con.setAvailable("not availbale");
+            DBConnection.updateConsultation(con.ConID);
+            //  con.setDescrption(desc);
+            con.setCustomer(us);
+            con.setcistomId(us.UserID);
+            //update the number of consultations of the lawyer
+            con.getConsultationLawyer().setNumOfConsultations(con.getConsultationLawyer().getNumOfConsultations() + 1);
+
+            //add the consultion to customer profile
+            con.getCustomer().AddConsultation(con);
+        } finally {
+            ConsultationLock.unlock();
+            //System.out.println("Finsh " + ConsultationLock.isLocked());
+        }
+
+    }
+   
+    //This method will save the details Consultation
+    public void saveBookConsultation() {
+        try {
+            PrintWriter p = new PrintWriter(new FileWriter("Descrption.txt", true));
+            p.println("\n---------------------------\n");
+            p.println("--Consultation details--\n" + toString());
+            p.println("--Lawyer details--" );
+            p.println("     Name: "+Customers.searchForLawyer(lawyerId).getNames()+" , Email: " + Customers.searchForLawyer(lawyerId).getUserEmail());
+            p.println("--Descrption: " + getDescrption());
+            p.println("--Customer details--\n" + DBConnection.SearchCustomer(cistomId));
+            p.println("\n---------------------------\n");
+
+            p.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    @Override
+    public String toString() {
+
+        return "     Date        Time        Day       \n"
+                + "     " + this.date + "     " + this.time + "     " + this.day + "        ";
+    }
+}
+
+
 //    // This method will display the available appointment
 //    public static boolean Displayschedule(int n, ArrayList<Consultation> Lschedule) {
 //        Scanner sc = new Scanner(System.in);
@@ -176,57 +236,10 @@ public class Consultation {
 //        }
 //
 //    }
-    // This method will display the available appointment
-    public static String newDisplayschedule(int n) {
 
-        String s = "";
-        s = s + ("       - this is the available appointment for the lawyer:\n " + DBConnection.Consultation.get(n).getConsultationLawyer().getNames()
-                + DBConnection.Consultation.get(n).toString());
 
-        return s;
 
-    }
-
-    public static void BookConsultation(User us, Consultation con) throws NoSuchElementException {
-        ConsultationLock.lock();
-        //System.out.println("Consultation Lock:" + ConsultationLock.isLocked());
-        try {
-            //make the appointment by chinging the stat of to not availbale, sending the description, and set the user
-            con.setAvailable("not availbale");
-            DBConnection.updateConsultation(con.ConID);
-            //  con.setDescrption(desc);
-            con.setCustomer(us);
-            con.setcistomId(us.UserID);
-            //update the number of consultations of the lawyer
-            con.getConsultationLawyer().setNumOfConsultations(con.getConsultationLawyer().getNumOfConsultations() + 1);
-
-            //add the consultion to customer profile
-            con.getCustomer().AddConsultation(con);
-        } finally {
-            ConsultationLock.unlock();
-            System.out.println("Finsh " + ConsultationLock.isLocked());
-        }
-
-    }
-
-    public void saveBookConsultation() {
-        try {
-            PrintWriter p = new PrintWriter(new FileWriter("Descrption.txt", true));
-            p.println("\n---------------------------\n");
-            p.println("Consultation details: \n" + toString());
-            p.println("--Lawyer name: " + Customers.searchForLawyer(lawyerId).getNames());
-            p.println("--Lawyer email: " + Customers.searchForLawyer(lawyerId).getUserEmail());
-            p.println("Descrption " + getDescrption());
-            p.println("--Customer: " + DBConnection.SearchCustomer(cistomId));
-            p.println("\n---------------------------\n");
-
-            p.close();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    }
-
-    public static String newBookConsultation(String desc, User us, Consultation con) throws NoSuchElementException {
+   /* public static String newBookConsultation(String desc, User us, Consultation con) throws NoSuchElementException {
 
         //make the appointment by chinging the stat of to not availbale, sending the description, and set the user
         con.setAvailable("not availbale");
@@ -242,7 +255,7 @@ public class Consultation {
 
         return ("Your Consltation has been booked successfully");
 
-    }
+    }*/
 
 //    //this method will book appointment for the customer
 //    public static void BookConsultation(String choise, User us, Consultation con) throws NoSuchElementException {
@@ -270,10 +283,3 @@ public class Consultation {
 //        }
 //
 //    }
-    @Override
-    public String toString() {
-
-        return "     Date        Time        Day       \n"
-                + "     " + this.date + "     " + this.time + "     " + this.day + "        ";
-    }
-}

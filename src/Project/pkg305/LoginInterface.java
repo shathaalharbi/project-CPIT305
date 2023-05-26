@@ -134,14 +134,19 @@ public class LoginInterface extends javax.swing.JFrame {
 
         String username = jTextField1.getText();
         String password = jPasswordField1.getText();
-
+   
+        //Copy the tables
         DBConnection.GetCustomers();
         DBConnection.GetLawyers();
         DBConnection.GetConsultations();
 
-        HomePageInterface.userlog = User.Login(username, password);
-        if (HomePageInterface.userlog != null) {
-            try {
+        try {
+            HomePageInterface.userlog = User.Login(username, password);
+
+            if (HomePageInterface.userlog == null) {
+                throw new NullPointerException("The user password or Username is incorrect \n Please try Again ");
+
+            } else {
                 // (1) Create Socket obj   
                 Socket s = new Socket("localhost", 8800);
 
@@ -150,15 +155,18 @@ public class LoginInterface extends javax.swing.JFrame {
                 homepage.pack();
                 homepage.show();
                 this.dispose();
-            } catch (IOException ex) {
-                System.out.println("issue in login interface connection");
             }
-
-        } else {
+        } catch (IOException e) {
+            System.out.println("issue in login interface connection");
+        } catch (NullPointerException e) {
             //user = null that's means user did not successfully login         
-            JOptionPane.showMessageDialog(null, "The user password or Username is incorrect \n Please try Again ", " Error", 0);
+            JOptionPane.showMessageDialog(null, e.getMessage(), " Error", 0);
         }
 
+//        } else {
+//            //user = null that's means user did not successfully login         
+//            JOptionPane.showMessageDialog(null, "The user password or Username is incorrect \n Please try Again ", " Error", 0);
+//        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

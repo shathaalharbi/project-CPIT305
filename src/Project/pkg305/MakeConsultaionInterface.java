@@ -26,7 +26,6 @@ public class MakeConsultaionInterface extends javax.swing.JFrame {
     }
 
     public void showMessage() {
-
         //print all lawyers profile
         String s = Lawyer.printLawyers();
         jTextArea1.append(s);
@@ -135,13 +134,13 @@ public class MakeConsultaionInterface extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
 
-        laywerNum = Integer.parseInt(jTextField1.getText()) - 1;
         try {
-            //check if ther is available appointment
+            laywerNum = Integer.parseInt(jTextField1.getText()) - 1;
             Lawyer lawyer = DBConnection.lawyer.get(laywerNum);
             for (int i = 0; i < DBConnection.Consultation.size(); i++) {
-                
+                //Searching for the lawyer Consultations
                 if (lawyer.getUserID() == DBConnection.Consultation.get(i).getlawyerId()) {
+                    //check if ther is available appointment
                     if (DBConnection.Consultation.get(i).getAvailable().equals("Available")) {
                         MakeConsultaionInterface2 consult = new MakeConsultaionInterface2();
                         consult.showMessage(DBConnection.Consultation.get(i));
@@ -157,6 +156,8 @@ public class MakeConsultaionInterface extends javax.swing.JFrame {
 
         } catch (IndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "there is no laywer with this number", " Error", 0);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "You need to enter the a number", " Error", 0);
         }
         // }
 //            if (DBConnection.Consultation.get(laywerNum)) {

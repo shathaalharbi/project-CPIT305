@@ -125,13 +125,20 @@ public class SearchInterface extends javax.swing.JFrame {
         jTextArea1.setText("");
         String name = txt.getText();
         Lawyer L = Customers.searchForLawyer(name);
-        if (L == null) {
-            //if the laweyer not found
-            JOptionPane.showMessageDialog(null, "There is no Lawyer with this name!");
-        } else {
+        try {
             jTextArea1.setText(L.toString());
+        }catch(NullPointerException e){
+            //if the laweyer not found
+            JOptionPane.showMessageDialog(null, "There is no Lawyer with this name!");    
         }
         
+//        if (L == null) {
+//            //if the laweyer not found
+//            JOptionPane.showMessageDialog(null, "There is no Lawyer with this name!");
+//        } else {
+//            jTextArea1.setText(L.toString());
+//        }
+//        
         //        if (s != null) {
 //            jTextArea1.setText(s);
 //        } else {

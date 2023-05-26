@@ -1,6 +1,5 @@
 package Project.pkg305;
 
-
 import java.io.*;
 import java.net.*;
 import java.sql.SQLException;
@@ -10,57 +9,56 @@ import javax.swing.JOptionPane;
 
 public class MainClass {
 
-    //decler array list from user class type to save the users
-    static ArrayList<User> user = new ArrayList<>();
-    //decler array list from lawyer class type to save the lawyers
-    static ArrayList<Lawyer> list = new ArrayList<>(); 
-    //decler array list from Consultation class type to save the Consultations
-    static ArrayList<Consultation> Lschedule = new ArrayList<>();
-    //user object
-    //public static User userlog;
-     
+//    //decler array list from user class type to save the users
+//    static ArrayList<User> user = new ArrayList<>();
+//    //decler array list from lawyer class type to save the lawyers
+//    static ArrayList<Lawyer> list = new ArrayList<>();
+//    //decler array list from Consultation class type to save the Consultations
+//    static ArrayList<Consultation> Lschedule = new ArrayList<>();
+//    //user object
+//    //public static User userlog;
+
     public static void main(String[] args) throws IOException, SQLException {
-         
-        PrintWriter p=new PrintWriter("Descrption.txt");
-        p.close();
         
+        
+        PrintWriter p = new PrintWriter("Descrption.txt");
+        p.close();
+
+        //////Creating the Database//////
         //DBConnection.CreatConnection();
         // DBConnection.CreatTables();
-         DBConnection.inserting();
         
-////        
-//         DBConnection.GetCustomers();
-//         DBConnection.GetLawyers();
-//         DBConnection.GetConsultations();
-         
-//        LoginInterface login = new LoginInterface();
-//        login.setVisible(true);
-//        login.pack();
-//        login.setLocationRelativeTo(null);
-//         
-         
-         
-       // Readfile(); //read from file
- 
-//        
-//        
-////        
+        // Inserting the data into the database
+        DBConnection.inserting();
+
+        // OPening the server 
         try (ServerSocket s = new ServerSocket(8800)) {
             System.out.println("Application Running...");
             int i = 1;
             while (true) {
                 Socket incom = s.accept();
                 System.out.println("Client Number: " + i);
-                System.out.println("Client connect via: " + incom.getInetAddress());
                 i++;
-
-
             }
-
         }
+    }
+}
 
 
-        /*Scanner input = new Scanner(System.in);
+
+/*
+         DBConnection.GetCustomers();
+         DBConnection.GetLawyers();
+         DBConnection.GetConsultations();
+
+        LoginInterface login = new LoginInterface();
+        login.setVisible(true);
+        login.pack();
+        login.setLocationRelativeTo(null);
+         
+         Readfile(); //read from file
+ */
+ /*Scanner input = new Scanner(System.in);
         Scanner input2 = new Scanner(System.in);
         
         while (true) {
@@ -178,8 +176,6 @@ public class MainClass {
             }
 
         }*/
-    }
-
 //    //this method will display the menu for the user and run choosen function
 //    public static int Menu() {
 //        Scanner sc = new Scanner(System.in);
@@ -192,28 +188,26 @@ public class MainClass {
 //        return choice;
 //       
 //    }
-
-    //this method will read all the files
-    public static void Readfile() {
+//this method will read all the files
+/*    public static void Readfile() {
         File file1 = new File("LawyersInfo.txt");
-                try {
-        Scanner input = new Scanner(file1);
+        try {
+            Scanner input = new Scanner(file1);
 
-        //read the data from input file and store it
-        while (input.hasNext()) {
-            String Name = input.nextLine();
-            String Phone = input.nextLine();
-            String Email = input.nextLine();
-            String Degree = input.nextLine();
-            String Specialty = input.nextLine();
-            String CasesTyep = input.nextLine();
-            String price = input.nextLine();
-            String num = input.nextLine();
-            String id = input.nextLine();
-            list.add(new Lawyer(Name, Phone, Email, Degree, Specialty, CasesTyep, Double.parseDouble(price), Integer.parseInt(num), Integer.parseInt(id)));
+            //read the data from input file and store it
+            while (input.hasNext()) {
+                String Name = input.nextLine();
+                String Phone = input.nextLine();
+                String Email = input.nextLine();
+                String Degree = input.nextLine();
+                String Specialty = input.nextLine();
+                String CasesTyep = input.nextLine();
+                String price = input.nextLine();
+                String num = input.nextLine();
+                String id = input.nextLine();
+                list.add(new Lawyer(Name, Phone, Email, Degree, Specialty, CasesTyep, Double.parseDouble(price), Integer.parseInt(num), Integer.parseInt(id)));
 
-        }
-
+            }
 
             File file2 = new File("login.txt");
             Scanner inputlogin = new Scanner(file2);
@@ -231,11 +225,11 @@ public class MainClass {
                 String time = input3.nextLine();
                 String Day = input3.nextLine();
                 String Date = input3.nextLine();
-               // Lschedule.add(new Consultation(Lname, time, Day, Date, list));
+                // Lschedule.add(new Consultation(Lname, time, Day, Date, list));
             }
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null, e);
         }
 
     }
-}
+}*/
