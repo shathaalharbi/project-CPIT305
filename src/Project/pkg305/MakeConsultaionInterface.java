@@ -155,9 +155,9 @@ public class MakeConsultaionInterface extends javax.swing.JFrame {
             }
 
         } catch (IndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(null, "there is no laywer with this number", " Error", 0);
+            JOptionPane.showMessageDialog(null, "there is no laywer with this number \n Try again", " Error", 0);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "You need to enter the a number", " Error", 0);
+            JOptionPane.showMessageDialog(null, "You need to enter a correctly number! \n Try again", " Error", 0);
         }
         // }
 //            if (DBConnection.Consultation.get(laywerNum)) {
