@@ -151,6 +151,10 @@ public class MakeConsultaionInterface2 extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         //Reinserting the data from the database in case of anny changes
+        DBConnection.lawyer.clear();
+        DBConnection.Customer.clear();
+        DBConnection.Consultation.clear();
+        
         DBConnection.GetCustomers();
         DBConnection.GetLawyers();
         DBConnection.GetConsultations();

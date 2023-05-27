@@ -215,7 +215,6 @@ public class DBConnection {
         } catch (Exception sqlEx) {
             System.out.println(sqlEx);
         }
-
     }
 
     //This method will copy the Customer table into Arraylist
