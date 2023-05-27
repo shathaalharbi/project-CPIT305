@@ -6,23 +6,9 @@
      10:00am     16/07     Monday        
 --Lawyer details--
      Name: Ahmed Alghamdi , Email: AhmedAlghamdi@gmail.com
---Descrption: nkjvhkshdvk
+--Descrption: wwwww
 --Customer details--
 Name: Sara Alharbi , Email: SaraAlharbi@gmail.com
-
----------------------------
-
-
----------------------------
-
---Consultation details--
-     Date        Time        Day       
-     1:15pm     20/07     Thursday        
---Lawyer details--
-     Name: Khaled Alshehri , Email: KhaledAlshehri@gmail.com
---Descrption: nkhkhk
---Customer details--
-Name: Leen Alzahrani , Email: LeenAlzahrani@gmail.com
 
 ---------------------------
 

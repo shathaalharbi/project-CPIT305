@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.concurrent.locks.ReentrantLock;
+import javax.swing.JOptionPane;
 
 public class Consultation {
 
@@ -164,6 +165,7 @@ public class Consultation {
         return s;
 
     }
+
     //This method will book appointment for the customer
     public static void BookConsultation(User us, Consultation con) throws NoSuchElementException {
         ConsultationLock.lock();
@@ -186,15 +188,15 @@ public class Consultation {
         }
 
     }
-   
+
     //This method will save the details Consultation
     public void saveBookConsultation() {
         try {
             PrintWriter p = new PrintWriter(new FileWriter("Descrption.txt", true));
             p.println("\n---------------------------\n");
             p.println("--Consultation details--\n" + toString());
-            p.println("--Lawyer details--" );
-            p.println("     Name: "+Customers.searchForLawyer(lawyerId).getNames()+" , Email: " + Customers.searchForLawyer(lawyerId).getUserEmail());
+            p.println("--Lawyer details--");
+            p.println("     Name: " + Customers.searchForLawyer(lawyerId).getNames() + " , Email: " + Customers.searchForLawyer(lawyerId).getUserEmail());
             p.println("--Descrption: " + getDescrption());
             p.println("--Customer details--\n" + DBConnection.SearchCustomer(cistomId));
             p.println("\n---------------------------\n");
@@ -212,7 +214,6 @@ public class Consultation {
                 + "     " + this.date + "     " + this.time + "     " + this.day + "        ";
     }
 }
-
 
 //    // This method will display the available appointment
 //    public static boolean Displayschedule(int n, ArrayList<Consultation> Lschedule) {
@@ -236,10 +237,7 @@ public class Consultation {
 //        }
 //
 //    }
-
-
-
-   /* public static String newBookConsultation(String desc, User us, Consultation con) throws NoSuchElementException {
+/* public static String newBookConsultation(String desc, User us, Consultation con) throws NoSuchElementException {
 
         //make the appointment by chinging the stat of to not availbale, sending the description, and set the user
         con.setAvailable("not availbale");
@@ -256,7 +254,6 @@ public class Consultation {
         return ("Your Consltation has been booked successfully");
 
     }*/
-
 //    //this method will book appointment for the customer
 //    public static void BookConsultation(String choise, User us, Consultation con) throws NoSuchElementException {
 //        Scanner sc = new Scanner(System.in);

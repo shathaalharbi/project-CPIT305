@@ -149,9 +149,9 @@ public class RateInterface extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if ((!jTextField1.getText().equals("")) && (!jTextField2.getText().equals(""))) {
-            int numconslt = Integer.parseInt(jTextField1.getText());
-            double rate = Integer.parseInt(jTextField2.getText());
             try {
+                int numconslt = Integer.parseInt(jTextField1.getText());
+                double rate = Integer.parseInt(jTextField2.getText());
                 //send the rate to method RatingCON to do the mathematical necessary operations
                 rate = Rating.RatingCON(HomePageInterface.userlog.Customer_Consultation.get(numconslt - 1), rate);
                 //update the rate of the lawyer
@@ -170,7 +170,7 @@ public class RateInterface extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "You need to enter the a number not litter \n Try again ", "Error", 0);
             }
         }else{
-           JOptionPane.showMessageDialog(null, "You leavit one of the field empty try again! \n Try again ", "Error", 0); 
+           JOptionPane.showMessageDialog(null, "You left an empty field\n Try again!", "Error", 0); 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -34,7 +34,6 @@ public class MakeConsultaionInterface2 extends javax.swing.JFrame {
 //        String s = Consultation.Displayschedule(i);
 //        jTextArea1.append(s);
 //    }
-
     public void showMessage(Consultation c) {
         // jButton1.setVisible(false);
         this.i = c;
@@ -150,22 +149,25 @@ public class MakeConsultaionInterface2 extends javax.swing.JFrame {
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
-        
+
         //Reinserting the data from the database in case of anny changes
-         DBConnection.GetCustomers();
-         DBConnection.GetLawyers();
-         DBConnection.GetConsultations();
-         
+        DBConnection.GetCustomers();
+        DBConnection.GetLawyers();
+        DBConnection.GetConsultations();
+
         if (i.getAvailable().equals("Available")) {
-            Thread t1= new Thread(new MyThread( HomePageInterface.userlog,DBConnection.Consultation.get(MakeConsultaionInterface.laywerNum ))); 
-             t1.start();
+            Thread t1 = new Thread(new MyThread(HomePageInterface.userlog, DBConnection.Consultation.get(MakeConsultaionInterface.laywerNum)));
+            t1.start();
             //Consultation.BookConsultation( HomePageInterface.userlog, DBConnection.Consultation.get(MakeConsultaionInterface.laywerNum ));
             // JOptionPane.showMessageDialog(null, "");
-            MakeConsultaionInterface3 makeConsultaionInterface3 = new MakeConsultaionInterface3(DBConnection.Consultation.get(MakeConsultaionInterface.laywerNum ));
+            MakeConsultaionInterface3 makeConsultaionInterface3 = new MakeConsultaionInterface3(DBConnection.Consultation.get(MakeConsultaionInterface.laywerNum));
             makeConsultaionInterface3.setVisible(true);
             makeConsultaionInterface3.pack();
             makeConsultaionInterface3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Sorry we don't have an available appointment \nWe will inform you if there is any avalible time in the lawyer schedule\n      Thank You", " Error", 0);
+
         }
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
